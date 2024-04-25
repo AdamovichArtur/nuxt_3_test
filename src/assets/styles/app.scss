@@ -1,0 +1,9 @@
+@import "./baseElements";
+@import "./tailwind.css";
+@include foundation-global-styles;
+@include foundation-typography;
+@include foundation-text-alignment;
+@include foundation-xy-grid-classes;
+@include foundation-visibility-classes;
+@include foundation-flex-classes;
+@include foundation-responsive-embed;

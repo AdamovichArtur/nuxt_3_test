@@ -1,0 +1,18 @@
+{/* Colors.mdx */}
+
+import { Meta, ColorPalette, ColorItem } from "@storybook/blocks";
+import { colorGroups } from "/src/assets/tailwind-config/data/dataColors.js";
+
+<Meta title="Colors" />
+
+<ColorPalette>
+  {Object.entries(colorGroups).map(([group, groupColors]) => {
+    return (
+      <ColorItem
+        key={group}
+        title={`Color group ${group}`}
+        colors={groupColors}
+      />
+    );
+  })}
+</ColorPalette>

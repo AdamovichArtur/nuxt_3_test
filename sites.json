@@ -1,0 +1,62 @@
+[
+  {
+    "name": "baseshop",
+    "hostName": "base-shop.we-aks-t.velux.com|base-shop.we-aks-d.velux.com|base-shop-dev.we-aks-d.velux.com|www.veluxshop102.local|localhost|veluxshop.sc",
+    "language": "en"
+  },
+  {
+    "name": "masterblinds",
+    "hostName": "master-blinds.we-aks-t.velux.com|master-blinds.we-aks-d.velux.com|master-blinds-dev.we-aks-d.velux.com|master.veluxshop102.local",
+    "language": "en"
+  },
+  {
+    "name": "baseshop",
+    "hostName": "ie-blinds.veluxshop.sc|ie-blinds.veluxshop102.local|ie-blinds-dev.we-aks-d.velux.com|ie-blinds.we-aks-d.velux.com|ie-blinds.we-aks-t.velux.com|localhost",
+    "language": "en-ie"
+  },
+  {
+    "name": "frblinds",
+    "hostName": "fr-blinds.veluxshop.sc|fr-blinds.veluxshop102.local|fr-blinds-dev.we-aks-d.velux.com|fr-blinds.we-aks-d.velux.com|fr-blinds.we-aks-t.velux.com",
+    "language": "fr-fr"
+  },
+  {
+    "name": "plblinds",
+    "hostName": "pl-blinds.veluxshop.sc|pl-blinds.veluxshop102.local|pl-blinds-dev.we-aks-d.velux.com|pl-blinds.we-aks-d.velux.com|pl-blinds.we-aks-t.velux.com",
+    "language": "pl-pl"
+  },
+  {
+    "name": "deblinds",
+    "hostName": "de-blinds.veluxshop.sc|de-blinds.veluxshop102.local|de-blinds-dev.we-aks-d.velux.com|de-blinds.we-aks-d.velux.com|de-blinds.we-aks-t.velux.com",
+    "language": "de-de"
+  },
+  {
+    "name": "ukblinds",
+    "hostName": "uk-blinds.veluxshop.sc|uk-blinds.veluxshop102.local|uk-blinds-dev.we-aks-d.velux.com|uk-blinds.we-aks-d.velux.com|uk-blinds.we-aks-t.velux.com",
+    "language": "en-gb"
+  },
+  {
+    "name": "nlblinds",
+    "hostName": "nl-blinds.veluxshop.sc|nl-blinds.veluxshop102.local|nl-blinds-dev.we-aks-d.velux.com|nl-blinds.we-aks-d.velux.com|nl-blinds.we-aks-t.velux.com",
+    "language": "nl-nl"
+  },
+  {
+    "name": "dkblinds",
+    "hostName": "dk-blinds.veluxshop.sc|dk-blinds.veluxshop102.local|dk-blinds-dev.we-aks-d.velux.com|dk-blinds.we-aks-d.velux.com|dk-blinds.we-aks-t.velux.com",
+    "language": "da-dk"
+  },
+  {
+    "name": "itblinds",
+    "hostName": "it-blinds.veluxshop.sc|it-blinds.veluxshop102.local|it-blinds-dev.we-aks-d.velux.com|it-blinds.we-aks-d.velux.com|it-blinds.we-aks-t.velux.com",
+    "language": "it-it"
+  },
+  {
+    "name": "esblinds",
+    "hostName": "es-blinds.veluxshop.sc|es-blinds.veluxshop102.local|es-blinds-dev.we-aks-d.velux.com|es-blinds.we-aks-d.velux.com|es-blinds.we-aks-t.velux.com",
+    "language": "es-es"
+  },
+  {
+    "name": "hublinds",
+    "hostName": "hu-blinds.veluxshop.sc|hu-blinds.veluxshop102.local|hu-blinds-dev.we-aks-d.velux.com|hu-blinds.we-aks-d.velux.com|hu-blinds.we-aks-t.velux.com",
+    "language": "hu-hu"
+  }
+]

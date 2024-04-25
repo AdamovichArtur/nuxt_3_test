@@ -1,0 +1,20 @@
+export const fontSizeData = {
+  11: 'calc(11rem/16)',
+  12: 'calc(12rem/16)',
+  14: 'calc(14rem/16)',
+  16: 'calc(16rem/16)',
+  18: 'calc(18rem/16)',
+  20: 'calc(20rem/16)',
+  22: 'calc(22rem/16)',
+  24: 'calc(24rem/16)',
+  26: 'calc(26rem/16)',
+  28: 'calc(28rem/16)',
+  32: 'calc(32rem/16)',
+  40: 'calc(40rem/16)',
+  42: 'calc(42rem/16)',
+  48: 'calc(48rem/16)',
+  56: 'calc(56rem/16)',
+  64: 'calc(64rem/16)',
+  80: 'calc(80rem/16)',
+  88: 'calc(88rem/16)'
+}

@@ -1,0 +1,17 @@
+/* Define custom components layer styles */
+@layer components {
+  .link-hover {
+    @apply underline cursor-pointer text-velux-red;
+  }
+
+  /* KITCHEN SINK */
+  /* Class used to notify the user that the field is required. Used on input, dropdown components */
+  .required-asterisk {
+    @apply after:content-['*'] after:text-velux-professional-red after:font-bold after:ml-0.5;
+  }
+
+  /* Class used to focus elements such as the input and dropdown components */
+  .element-focus {
+    @apply focus:border-velux-light-blue focus:shadow-[0_0_16px_0] focus:shadow-velux-light-blue;
+  }
+}

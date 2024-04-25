@@ -1,0 +1,30 @@
+@use 'sass:map';
+@import './base';
+
+$skinVars : map.deep-merge($baseVars, (
+  "colors": (
+    "primary": ("medium" : #ed1d24),
+    "secondary": ("medium" : #f58220),
+    "success": ("medium" : #3adb76),
+    "warning": ("medium" : #ffae00),
+    "alert": ("medium" : #cc4b37),
+  ),
+    "siteWidth": 70rem ,
+    "fontDefault": "OpenSans",
+    "fontDisplay": "OpenSans",
+    "borderVeryThin": .063rem,
+    "borderThin": .1rem,
+    "borderNormal": .2rem,
+    "borderThick": 0.3rem,
+
+));
+
+
+@import '../vars';
+
+
+//Add values based on previously defined vars
+$skinAdditional : (
+);
+
+$skinVars: map.deep-merge($skinVars, $skinAdditional);

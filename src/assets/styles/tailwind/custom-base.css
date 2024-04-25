@@ -1,0 +1,14 @@
+/* Define custom base layer styles */
+@layer base {
+  @counter-style checkmark {
+    system: cyclic;
+    symbols: '✓';
+    suffix: '  ';
+  }
+
+  @counter-style chevron {
+    system: cyclic;
+    symbols: '›';
+    suffix: '  ';
+  }
+}

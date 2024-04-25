@@ -1,0 +1,79 @@
+@use "sass:map";
+@use "sass:meta";
+
+
+//Percentage of lightening and darkening
+$lightenLevel: 10;
+$darkenLevel: 10;
+
+//Fill out missing colors
+$colorVars : map.get($skinVars, 'colors');
+
+
+@each $color, $colorVariants in $colorVars {
+  $newColorVariants : $colorVariants;
+
+  //Check if we have medium
+  @if (map.has-key($colorVariants, "medium")){
+    //Medium is the base color we will use for applying light and dark if those are missing
+    $baseColor : map.get($colorVariants, "medium");
+
+    @if (not map.has-key($colorVariants, "light")){
+      $tweakedColor : lighten($baseColor, $lightenLevel);
+      $newColorVariants : map.set($newColorVariants, "light", $tweakedColor);
+    }
+
+    @if (not map.has-key($colorVariants, "dark")){
+      $tweakedColor : darken($baseColor, $darkenLevel);
+      $newColorVariants : map.set($newColorVariants, "dark", $tweakedColor);
+    }
+  }
+
+  //Add the new variants to this color
+  $colorVars: map.set($colorVars, $color, $newColorVariants);
+}
+
+
+@function get-var($var){
+  @return map.get($skinVars, $var);
+}
+
+@function get-color-var($var, $variant : 'medium'){
+  @if(meta.type-of($var) != 'null'){
+
+    @if(map.get($colorVars, $var) != 'null'){
+      $color : map.get($colorVars, $var);
+
+      @if(meta.type-of($color) != 'null'){
+        $colorVariant : map.get($color, $variant);
+        @return map.get($color, $variant);
+      }
+
+      @return null;
+    }
+  }@else{
+    @return null;
+  }
+
+}
+
+$fontPath: "@fonts";
+
+$breakpoints: (
+  small: 0,
+  medium: 640px,
+  large: 1024px,
+);
+
+$breakpoint-classes: (small medium large);
+
+
+//Add needed fonts
+$fontBranded: map.get($skinVars, 'fontDefault');
+$fontWeightsBranded: 100, 700;
+ @font-face {
+   font-family: $fontBranded;
+   src: url("#{$fontPath}/#{$fontBranded}.woff2") format("woff2");
+   font-weight: $fontWeightsBranded;
+ }
+

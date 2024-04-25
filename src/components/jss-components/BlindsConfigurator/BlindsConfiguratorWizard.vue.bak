@@ -1,0 +1,141 @@
+<template></template>
+
+<script setup lang="ts">
+const props = defineProps({
+  fields: {
+    type: Object,
+    required: true,
+  },
+});
+
+//const blindsConfiguratorEndpoint = 'https://cm-master-blinds-test.velux.com/api/sitecore/blindsconfigurator/configure';
+const blindsConfiguratorEndpoint =
+  "https://www.veluxblindsdirect.co.uk/api/sitecore/blindsconfigurator/configure";
+//const blindsConfiguratorEndpoint = 'https://veluxshop.sc/api/blinds-configurator/configure';
+//const blindsConfiguratorEndpoint = 'https://shops-cm.we-aks-d.velux.com/api/sitecore/blindsconfigurator/configure';
+
+console.log("DataSource is:");
+console.log(props.fields);
+
+if (!props.fields.Id || !props.fields.Language) {
+  console.warn("DataSource is invalid");
+} else {
+  console.log(`TemplateID is: \n${props.fields.Id}`);
+  console.log(`Language is: \n${props.fields.Language}`);
+
+  // Initialize - Blinds Configurator Wizard. This will pick the first option from the response and then will trigger each next step in the same way.
+  firstStep_WindowType(props.fields.Id, props.fields.Language);
+}
+
+function processRequest(url, nextStep) {
+  console.log(`Requesting: ${url}`);
+  fetch(url, {
+    method: "GET",
+  })
+    .then((response) => {
+      response.json().then((responseData) => {
+        console.log(responseData);
+        if (!responseData.Error && nextStep) {
+          nextStep(responseData, url);
+        }
+      });
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+}
+
+function firstStep_WindowType(id, language) {
+  console.log("Retrieving data for [Window type] drop down list...");
+
+  processRequest(
+    `${blindsConfiguratorEndpoint}?templateId=${id}&language=${language}`,
+    firstStep_WindowSize
+  );
+}
+
+function firstStep_WindowSize(response, url) {
+  const windowType = response[0].WindowTypes[0].Type;
+  console.log(
+    `Retrieving data for [Window size] drop down list when ${windowType} [Window type] is selected.`
+  );
+
+  processRequest(
+    `${url}&windowType=${windowType}`,
+    firstStep_WindowSize_Selected
+  );
+}
+
+function firstStep_WindowSize_Selected(response, url) {
+  const windowSize = response[0].WindowSizes[0].Size;
+  console.log(
+    `Retrieving data for [Second Step] drop down list when ${windowSize} [Window size] is selected.`
+  );
+
+  processRequest(
+    `${url}&windowSize=${windowSize}`,
+    secondStep_RetrieveCategories
+  );
+}
+
+function secondStep_RetrieveCategories(response, url) {
+  var availableCategories = new Array();
+  const categories = response[0].Categories.filter(
+    (category) => category.MatchFound
+  );
+  categories.forEach((category) => {
+    const subCategories = category.SubCategories.filter(
+      (subCategory) => subCategory.MatchFound
+    );
+    subCategories.forEach((subCategory) => {
+      // hardcoded logic should be double checked with old implementation in loader.js
+      if (subCategory.PicassoId.toLowerCase().indexOf("flatroof") > -1) {
+        availableCategories.push(subCategory);
+      }
+    });
+  });
+
+  console.log("Available categories:");
+  console.log(availableCategories);
+
+  const categoryId = availableCategories[0].PicassoId;
+  console.log(
+    `Retrieving data for Category step when ${categoryId} [Blind Category] is selected.`
+  );
+
+  processRequest(`${url}&categoryId=${categoryId}`, secondStep_RetrieveFinish);
+}
+
+function secondStep_RetrieveFinish(response, url) {
+  const finishId =
+    response[0].Finishes[0].PicassoId || response[0].Finishes[0].FinishId;
+  console.log(
+    `Retrieving data for Category step when ${finishId} Finish is selected.`
+  );
+
+  processRequest(`${url}&finishId=${finishId}`, thirdStep);
+}
+
+function thirdStep(response, url) {
+  const operationId = response[0].Operations[0].Id;
+  console.log(
+    `Retrieving data for [Operation method] step when ${operationId} operation method is selected.`
+  );
+
+  processRequest(`${url}&operationId=${operationId}`, fourthStep);
+}
+
+function fourthStep(response, url) {
+  const colorId = response[0].Colors[0].Id;
+  console.log(
+    `Retrieving data for [Colour] step when ${colorId} colour is selected.`
+  );
+
+  processRequest(`${url}&colorId=${colorId}`, finalStep);
+}
+
+function finalStep(response, url) {
+  console.log("Final product is:");
+  console.log(response[0].Request);
+}
+</script>

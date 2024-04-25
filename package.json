@@ -1,7 +1,7 @@
 {
   "name": "nuxt-baseshop",
   "version": "0.0.1",
-  "private": true,
+  "private": false,
   "description": "VELUX Online Sales pplication utilizing Sitecore JavaScript Services and Vue (vue-cli).",
   "author": {
     "name": "VELUX",
